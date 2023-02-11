@@ -17,9 +17,8 @@ class PermissionRolesSeeder extends Seeder
     {
         $arreglo=array();
         for($i=1;$i<=17;$i++){
-            $j=$i++;
             $arreglo['rol_id_fk']=1;
-            $arreglo['id_permission_fk']=$j;
+            $arreglo['id_permission_fk']=$i;
             DB::table('permissions_roles')->insert($arreglo);
         }
 

@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id('profile_id');
-            $table->string('name');
-            $table->string('last_name');
-            $table->string('movil');
-            $table->string('telf');
+            $table->string('name',25);
+            $table->string('last_name',25);
+            $table->string('movil',10)->nullable();
+            $table->string('telf',7)->nullable();
             $table->unsignedBigInteger('user_id_fk');
             $table->foreign('user_id_fk')
                 ->references('user_id')

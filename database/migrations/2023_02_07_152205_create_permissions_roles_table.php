@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('permissions_roles', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('rol_id_fk');
-            $table->unsignedBigInteger('id_permission_fk');
+            $table->tinyIncrements('id');
+            $table->tinyInteger('rol_id_fk',false,true);
+            $table->tinyInteger('id_permission_fk',false,true);
             $table->foreign('rol_id_fk')
                 ->references('rol_id')
                 ->on('roles')

@@ -8,11 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Restaurant;
+use App\Models\Profile;
+use App\Models\Rol;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    protected $primaryKey = 'user_id';
     protected $fillable = [
         'name',
         'email',
@@ -27,9 +29,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
+    public function profile(){
+        return $this->hasOne(Profile::class,'user_id_fk');
+    }
     public function restaurant(){
-        return $this->hasOne(Restaurant::class);
+        return $this->hasMany(Restaurant::class,'user_id_fk');
+    }
+    public function rol(){
+        return $this->belongsTo(Rol::class,'rol_id_fk','rol_id');
     }
 
 }

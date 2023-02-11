@@ -18,10 +18,12 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'username' => fake()->username(),
+            'rol_id_fk'=>fake()->numberBetween(1,3),
+            'username' =>fake()->username(),
             'email' => fake()->unique()->safeEmail(),
             'birthday'=>fake()->dateTimeBetween('-90 years', '-350 days'),
             'email_verified_at' => now(),
+       
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];
