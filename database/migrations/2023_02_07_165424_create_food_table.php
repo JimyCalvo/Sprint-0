@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('cost',5);
             $table->string('time',2)->nullable();
             $table->boolean('visibility');
-            $table->string('ruc_fk',13);
+            $table->unsignedBigInteger('ruc_fk');
             $table->foreign('ruc_fk')
                 ->references('ruc')
                 ->on('restaurants')

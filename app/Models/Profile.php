@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Image;
 
 class Profile extends Model
 {
@@ -16,5 +17,13 @@ class Profile extends Model
     {
         return $this->belongsTo(User::class, 'user_id_fk','user_id');
     }
+     //-------------------------------------------------------//
+    public function image()
+    {
+        return $this->MorphOne(Image::class, 'imageable');
+    }
+
+ 
+ 
 
 }

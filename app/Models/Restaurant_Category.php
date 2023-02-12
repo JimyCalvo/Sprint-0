@@ -15,4 +15,5 @@ class Restaurant_Category extends Model
     {
         return $this->hasMany(Restaurant::class, 'category_id_fk');
     }
+    
 }

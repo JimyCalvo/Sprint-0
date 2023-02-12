@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->tinyInteger('rol_id_fk',false,true)->after('user_id');
+            $table->tinyInteger('rol_id_fk',false,true)->default(3)->after('user_id');
             $table->foreign('rol_id_fk')
                 ->references('rol_id')
                 ->on('roles')

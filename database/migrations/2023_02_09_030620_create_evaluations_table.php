@@ -14,21 +14,22 @@ return new class extends Migration
     public function up()
     {
         Schema::create('evaluations', function (Blueprint $table) {
-            
-            $table->unsignedBigInteger('user_id_pk');
-            $table->string('ruc_pk',13);
+            $table->id();
+            $table->unsignedBigInteger('user_id_fk');
+            $table->unsignedBigInteger('ruc_fk');
             $table->tinyInteger('score');
-            $table->foreign('user_id_pk')
+            $table->foreign('user_id_fk')
                 ->references('user_id')
                 ->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreign('ruc_pk')
+            $table->foreign('ruc_fk')
                 ->references('ruc')
                 ->on('restaurants')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->primary(['user_id_pk','ruc_pk']);
+            
+
             $table->timestamps();
         });
     }

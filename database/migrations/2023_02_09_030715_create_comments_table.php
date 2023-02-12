@@ -16,20 +16,20 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id('comment_id');
             $table->string('commentary');
-            $table->unsignedBigInteger('user_id_pk')->nullable();
-            $table->string('ruc_pk',13);
-            $table->foreign('user_id_pk')
+            $table->unsignedBigInteger('user_id_fk')->nullable();
+            $table->unsignedBigInteger('ruc_fk');
+            $table->foreign('user_id_fk')
                 ->references('user_id')
                 ->on('users')
                 ->onDelete('set null')
                 ->onUpdate('cascade');
-            $table->foreign('ruc_pk')
+            $table->foreign('ruc_fk')
                 ->references('ruc')
                 ->on('restaurants')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->timestamps();
-            $table->index(['user_id_pk','ruc_pk']);
+            $table->index(['user_id_fk','ruc_fk']);
         });
     }
 
@@ -37,6 +37,8 @@ return new class extends Migration
      * Reverse the migrations.
      *
      * @return void
+     * $image= new Image(['url'=>'https://platform.openai.com/playground','direc_public'=>'playground/'])
+     * $rest->imageable()->save($image)
      */
     public function down()
     {

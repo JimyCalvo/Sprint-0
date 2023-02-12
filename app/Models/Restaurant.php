@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Restaurant_Category;
+use App\Models\Comment;
+use App\Models\Evaluation;
+use App\Models\Food;
 
 class Restaurant extends Model
 {
@@ -19,5 +22,20 @@ class Restaurant extends Model
     
     public function category(){
         return $this->belongsTo(Restaurant_Category::class,'category_id_fk','category_id');
+    }
+    public function comments(){
+        return $this->hasMany(Comment::class,'ruc_fk');
+    }
+    public function evaluations(){
+        return $this->hasMany(Evaluation::class,'ruc_fk');
+    }
+    public function foods(){
+        return $this->hasMany(Food::class,'ruc_fk');
+    }
+
+    //---------------------------------------------
+    public function image()
+    {
+        return $this->MorphOne(Image::class, 'imageable');
     }
 }

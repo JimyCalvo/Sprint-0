@@ -4,8 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Food;
 
 class Food_Category extends Model
 {
     use HasFactory;
+    protected $table ='food_categories';
+    protected $primaryKey='category_id';
+    protected $fillable=['category','brief'];
+    public function food()
+    {
+        return $this->hasMany(Food::class, 'category_id_fk');
+    }
 }

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('restaurants', function (Blueprint $table) {
-            $table->string('ruc',13)->unique()->primary();
+            $table->unsignedBigInteger('ruc')->unique()->primary();
             $table->unsignedBigInteger('user_id_fk')->nullable();
             $table->string('local_name',40);
             $table->string('address',150);

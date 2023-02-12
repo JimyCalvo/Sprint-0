@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('imageables', function (Blueprint $table) {
-            $table->unsignedBigInteger('imageable_id');
-            $table->string('imageable_type');
+        Schema::create('images', function (Blueprint $table) {
+            $table->id();
+            $table->morphs('imageable');
             $table->string('url');
-            $table->string('direc_public',60);
-            $table->primary('imageable_id', 'imageable_type');
+            $table->string('direc_public');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('imageables');
+        Schema::dropIfExists('images');
     }
 };
